@@ -180,7 +180,7 @@
 }
 
 .input_tips {
-    border: 1px solid #ffd79d;
+    border: 1px solid #ced4da;
     padding: .375rem .75rem;
     border-radius: .25rem;
     margin-top: 0.25rem;
@@ -189,11 +189,8 @@
 
 .bd-navbar-index {
     min-height: 4rem;
-    background-color: #c0946d;
+    background-color: #563d7c;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
     height: auto;
     position: relative;
-}
-body{
-	background-image: url(/images/1.jpg);
 }

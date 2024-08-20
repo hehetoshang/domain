@@ -7,20 +7,23 @@
     <title>程序安装 - {{ config('app.name') }}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
 </head>
 <body>
 <div id="vue">
     <div class="col-12 col-md-4 offset-md-4 mt-3 mt-sm-5">
         @if(config('mysql'))
             <div class="card mb-3">
-                <div class="card-header text-white bg-info ">安装提示</div>
+                <div class="card-header">安装提示</div>
                 <div class="card-body text-center text-danger">
                     对不起，你已完成安装！如需重新安装，请删除 根目录/src/config/mysql.php 文件
                 </div>
             </div>
         @else
             <div class="card mb-3" v-if="step===1">
-                <div class="card-header text-white bg-info ">运行环境检测</div>
+                <div class="card-header ">运行环境检测</div>
                 <div class="card-body">
                     @if($check=true)@endif
                     @foreach($support as $row)
@@ -40,7 +43,7 @@
                 </div>
             </div>
             <div class="card mb-3" v-else-if="step===2">
-                <div class="card-header text-white bg-info ">MYSQL数据库配置</div>
+                <div class="card-header ">MYSQL数据库配置</div>
                 <div class="card-body">
                     <form id="form-mysql">
                         <input type="hidden" name="action" value="mysql">
@@ -77,7 +80,7 @@
                         <div class="form-group row">
                             <label class="col-3 col-form-label">数据表前缀</label>
                             <div class="col-9">
-                                <input type="text" name="prefix" class="form-control" value="kldns_">
+                                <input type="text" name="prefix" class="form-control" value="dnsnxy_">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -90,7 +93,7 @@
                 </div>
             </div>
             <div class="card mb-3" v-else-if="step===3">
-                <div class="card-header text-white bg-info ">安装完成</div>
+                <div class="card-header ">安装完成</div>
                 <div class="card-body">
                     <div class="list-group-item">
                         成功执行SQL语句@{{ data.success }}条，失败@{{ data.error }}条！
@@ -110,8 +113,11 @@
     </div>
 </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/js/main.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/layer/2.3/layer.js"></script>
 <script src="/js/main.js"></script>

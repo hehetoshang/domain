@@ -1,10 +1,12 @@
 @extends('admin.layout.index')
 @section('title', '接口配置')
 @section('content')
+ <div class="lyear-layout-content">
+   <div class="container-fluid">
     <div id="vue" class="pt-3 pt-sm-0">
         <div class="card">
             <div class="card-header">
-                域名解析平台接口配置
+                <h4>域名解析平台接口配置：</h4>
                 <a href="#modal-store" data-toggle="modal" @click="storeInfo={dns:0}"
                    class="float-right btn btn-sm btn-primary">添加</a>
             </div>

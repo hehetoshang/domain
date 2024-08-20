@@ -2,21 +2,20 @@
 @section('title', '记录列表')
 @section('content')
     @if(config('sys.html_home'))
-        <div class="alert alert-primary">
-            {!! config('sys.html_home') !!}
-        </div>
+       
     @endif
-    <div id="vue" class="pt-3 pt-sm-0">
+   <div id="vue" class="pt-3 pt-sm-0">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">
-                记录列表
+            <div class="card-header"><h4>记录列表：</h4>
                 <a href="#modal-store" data-toggle="modal"
                    @click="storeInfo={did:domainList.length>0?domainList[0].did:0,line_id:0,type:'A'}"
                    class="float-right btn btn-sm btn-primary">添加</a>
             </div>
-            <div class="card-header">
+              <div class="card-body">
                 <div class="form-inline">
-                    <input type="text" disabled="disabled" class="d-none">
                     <div class="form-group">
                         <select class="form-control" v-model="search.did">
                             <option value="0">所有</option>
@@ -49,7 +48,9 @@
                             <th>线路</th>
                             <th>记录值</th>
                             <th>添加时间</th>
+                            <th>操作者IP</th>
                             <th>操作</th>
+ 
                         </tr>
                         </thead>
                         <tbody v-cloak="">
@@ -64,10 +65,15 @@
                             <td>@{{ row.line }}</td>
                             <td>@{{ row.value }}</td>
                             <td>@{{ row.created_at }}</td>
+                            <td><script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+                            <script type="text/javascript">  
+                            document.write(returnCitySN["cip"]+','+returnCitySN["cname"])  
+                            </script></td>
                             <td>
                                 <a href="#modal-store" class="btn btn-sm btn-info" data-toggle="modal"
                                    @click="storeInfo=Object.assign({},row)">修改
                                 </a>
+                                 <a class="btn btn-sm btn-success" :href="'http://'+row.name+'.'+(row.domain?row.domain.domain:'')">访问</a>
                                 <a class="btn btn-sm btn-danger" @click="del(row.id)">删除</a>
                             </td>
                         </tr>
@@ -93,12 +99,11 @@
                             <input type="hidden" name="action" value="recordStore">
                             <input type="hidden" name="id" :value="storeInfo.id" v-if="storeInfo.id">
                             <input type="hidden" name="did" :value="storeInfo.did" v-if="storeInfo.id">
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">主机记录</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <input type="text" name="name" class="form-control" v-model="storeInfo.name">
-                                        <select class="form-control" name="did" style="flex: none;width: 100px;"
+                            <div class="form-group">
+                                <div class="col-sm-10"></div>
+                               	<div class="form-group has-feedback feedback-left">
+                                        <input type="text" name="name" placeholder="输入需要的二级域名前缀" class="form-control" v-model="storeInfo.name">
+                                        <select class="form-control" name="did"
                                                 v-model="storeInfo.did" :disabled="storeInfo.id">
                                             <option v-for="(domain,i) in domainList" :value="domain.did">
                                                 @{{ domain.domain }}
@@ -106,28 +111,31 @@
                                         </select>
                                     </div>
                                     <div style="border: 1px solid #ced4da;border-radius: .25rem;padding: .375rem .75rem;margin-top: .25rem;font-size: 14px;color: grey;" v-if="desc"
-                                         v-html="desc"></div>
+                                         v-html="desc">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">记录类型</label>
-                                <div class="col-sm-10">
+                            <div class="form-group">
+                                <div class="col-sm-10"></div>   
+                                	<div class="form-group has-feedback feedback-left">
+                                    <span class="mdi mdi-key-change  form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" name="type" v-model="storeInfo.type">
                                         <option value="A">A</option>
                                         <option value="CNAME">CNAME</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">记录值</label>
-                                <div class="col-sm-10">
+                            <div class="form-group">
+                                <div class="col-sm-10"></div>   
+                                	<div class="form-group has-feedback feedback-left">
+                                    <span class="mdi mdi-table-edit form-control-feedback" aria-hidden="true"></span>
                                     <input type="text" name="value" class="form-control" placeholder="输入记录值"
                                            v-model="storeInfo.value">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">线路</label>
-                                <div class="col-sm-10">
+                            <div class="form-group">
+                                 <div class="col-sm-10"></div>  
+                                	<div class="form-group has-feedback feedback-left">
+                                    <span class="mdi mdi-link-variant form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" name="line_id" v-model="storeInfo.line_id">
                                         <option v-for="(line,i) in getLineList()" :value="line.Id">
                                             @{{ line.Name }}
@@ -135,9 +143,10 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">积分</label>
-                                <div class="col-sm-10">
+                            <div class="form-group">
+                                <div class="col-sm-10"></div>
+                                	<div class="form-group has-feedback feedback-left">
+                                    <span class="mdi mdi-currency-jpy form-control-feedback" aria-hidden="true"></span>
                                     <input type="text" class="form-control" :value="getDomainPoint()+' 积分/条'" disabled>
                                 </div>
                             </div>

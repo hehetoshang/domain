@@ -1,10 +1,12 @@
 @extends('admin.layout.index')
 @section('title', '用户组')
 @section('content')
+ <div class="lyear-layout-content">
+   <div class="container-fluid">
     <div id="vue" class="pt-3 pt-sm-0">
         <div class="card">
             <div class="card-header">
-                用户组
+                <h4>用户组：</h4>
                 <a href="#modal-store" data-toggle="modal" @click="storeInfo={}"
                    class="float-right btn btn-sm btn-primary">添加</a>
             </div>

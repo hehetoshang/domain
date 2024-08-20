@@ -1,6 +1,8 @@
 @extends('admin.layout.index')
 @section('title', '积分明细')
 @section('content')
+ <div class="lyear-layout-content">
+   <div class="container-fluid">
     <div id="vue" class="pt-3 pt-sm-0">
         <div class="card">
             <div class="card-header">
@@ -8,7 +10,6 @@
             </div>
             <div class="card-header">
                 <div class="form-inline">
-                    <input type="text" disabled="disabled" class="d-none">
                     <div class="form-group">
                         <select class="form-control" v-model="search.act">
                             <option value="all">所有</option>

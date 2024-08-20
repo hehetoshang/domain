@@ -1,8 +1,10 @@
 @extends('admin.layout.index')
 @section('title', '关键词自动检测')
 @section('content')
+ <div class="lyear-layout-content">
+   <div class="container-fluid">
     <div id="vue" class="pt-3 pt-sm-0 row">
-        <div class="col-12 col-md-6 mt-2">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
                     关键词自动检测

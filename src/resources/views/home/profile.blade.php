@@ -1,11 +1,20 @@
 @extends('home.layout.index')
 @section('title', '个人资料')
 @section('content')
-    <div id="vue" class="pt-3 pt-sm-0">
-        <div class="col-12 col-md-6 mt-2">
+ <div id="vue" class="pt-3 pt-sm-0">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    个人资料
+                  <div class="edit-avatar">
+                  <img src="/images/zhu.png" alt="析云网" class="img-avatar">
+                  <div class="avatar-divider"></div>
+                  <div class="edit-avatar-content">
+                     <span class="label label-primary">UID:{{ auth()->user()->uid }}</span>
+                    <span class="label label-info">金币:{{ auth()->user()->point }}</span>
+                  </div>
+                </div>
                 </div>
                 <div class="card-body">
                     <form id="form-profile">
@@ -70,7 +79,9 @@
                     <a class="btn btn-info text-white float-right" @click="form('profile')">修改密码</a>
                 </div>
             </div>
+            </div>
         </div>
+    </div>
     </div>
 @endsection
 @section('foot')

@@ -102,3 +102,4 @@ Route::prefix('admin')->middleware('auth:admin', 'auth.session:admin')->namespac
         });
     });
 });
+

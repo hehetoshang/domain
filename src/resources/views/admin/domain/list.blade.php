@@ -1,10 +1,12 @@
 @extends('admin.layout.index')
 @section('title', '域名列表')
 @section('content')
+ <div class="lyear-layout-content">
+   <div class="container-fluid">
     <div id="vue" class="pt-3 pt-sm-0">
         <div class="card">
             <div class="card-header">
-                域名列表
+                <h4>域名列表:</h4>
                 <a href="#modal-add" data-toggle="modal" @click="storeInfo={}"
                    class="float-right btn btn-sm btn-primary">添加</a>
             </div>
@@ -64,14 +66,14 @@
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-3 col-form-label">解析平台</label>
                                 <div class="col-sm-9">
-                                    <div class="input-group">
+                                   <div class="input-group-append"> 
                                         <select name="dns" class="form-control" v-model="dns">
                                             <option value="0">请选择域名解析平台</option>
                                             @foreach(\App\Models\DnsConfig::all() as $dns)
                                                 <option value="{{ $dns->dns }}">{{ $dns->dns }}</option>
                                             @endforeach
                                         </select>
-                                        <div class="input-group-append" @click="getDomainList">
+                                         <div class="input-group-append" @click="getDomainList">
                                             <span class="input-group-text btn btn-success">获取</span>
                                         </div>
                                     </div>
